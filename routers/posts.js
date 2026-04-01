@@ -46,7 +46,10 @@ router.get('/', function (req, res) {
 
 // show
 router.get('/:id', function (req, res) {
-    res.send('Post with id ' + req.params.id);
+
+    const post = posts.find(post => post.id === parseInt(req.params.id));
+
+    res.send(post);
 });
 
 // store
