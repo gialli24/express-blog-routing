@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const posts = [
+let posts = [
     {
         id: 1,
         title: 'Esplorando Node.js',
@@ -69,7 +69,10 @@ router.patch('/:id', function (req, res) {
 
 // destroy
 router.delete('/:id', function (req, res) {
-    res.send('Deleting post with id ' + req.params.id);
+
+    posts = posts.filter(post => post.id !== parseInt(req.params.id));
+
+    res.json(posts);
 });
 
 
