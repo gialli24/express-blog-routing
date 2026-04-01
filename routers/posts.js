@@ -69,18 +69,9 @@ router.patch('/:id', function (req, res) {
 
 // destroy
 router.delete('/:id', function (req, res) {
-    let deletedPost = {};
-    let tempPosts = [];
-
-    posts.forEach(post => {
-        if (post.id === parseInt(req.params.id)) {
-            deletedPost = post;
-        } else {
-            tempPosts.push(post);
-        }
-    })
-
-    posts = tempPosts;
+    const idToDelete = parseInt(req.params.id);
+    deletedPost = posts.find(p => p.id === idToDelete);
+    posts = posts.filter(p => p.id !== idToDelete);
 
     res.json(deletedPost);
 });
